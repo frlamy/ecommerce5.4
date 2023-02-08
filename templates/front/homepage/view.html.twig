@@ -1,20 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'front/layout.html.twig' %}
 
-{% block title %}Hello HomepageController!{% endblock %}
+{% block main %}
+    <h1>E-CO 5.4</h1>
+    <hr>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/franck.lamy/Sites/ecommerce5.4/src/Controller/HomepageController.php'|file_link(0) }}">src/Controller/HomepageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/franck.lamy/Sites/ecommerce5.4/templates/homepage/index.html.twig'|file_link(0) }}">templates/homepage/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="row">
+        {% for i in 1..3 %}
+        <div class="col">
+            <div class="card">
+                <img src="https://picsum.photos/400/400" alt="Product picture" class="img-fluid">
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <p class="card-text">Text</p>
+                    <a href="#" class="btn btn-primary">Add</a>
+                    <a href="" class="btn btn-success">See more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
 {% endblock %}

@@ -19,7 +19,7 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(): Response
+    public function homepage(): Response
     {
         return $this->render('front/homepage/view.html.twig', [
         ]);
