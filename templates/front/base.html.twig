@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <meta charset="UTF-8">
 
@@ -17,36 +17,39 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
         {% block navbar %}
-            {% include 'front/navbar/navbar.html.twig' %}
+            <header>
+                {% include 'front/navbar/navbar.html.twig' %}
+            </header>
         {% endblock %}
 
         <div class="container pt-5">
             {% block main %}{% endblock %}
         </div>
+
+        {% block footer %}
+            <footer class="footer row mt-auto">
+                {% include 'front/footer/view.html.twig' with {
+                    'title': 'About',
+                    'icon': 'fas fa-info-circle',
+                    'text': 'Lorem ipsum dolor sit amet',
+                    'textColor': 'text-white'
+                }%}
+                {% include 'front/footer/view.html.twig' with {
+                    'title': 'Indeed',
+                    'icon': 'fas fa-check',
+                    'text': 'Lorem ipsum dolor sit amet',
+                    'textColor': 'text-white'
+                }%}
+                {% include 'front/footer/view.html.twig' with {
+                    'title': 'Safe',
+                    'icon': 'fas fa-lock',
+                    'text': 'Lorem ipsum dolor sit amet',
+                    'textColor': 'text-white'
+                }%}
+            </footer>
+        {% endblock %}
     </body>
 
-    {% block footer %}
-        <footer class="row">
-        {% include 'front/footer/view.html.twig' with {
-            'title': 'About',
-            'icon': 'fas fa-info-circle',
-            'text': 'Lorem ipsum dolor sit amet',
-            'textColor': 'text-white'
-        }%}
-        {% include 'front/footer/view.html.twig' with {
-            'title': 'Indeed',
-            'icon': 'fas fa-check',
-            'text': 'Lorem ipsum dolor sit amet',
-            'textColor': 'text-white'
-        }%}
-        {% include 'front/footer/view.html.twig' with {
-            'title': 'Safe',
-            'icon': 'fas fa-lock',
-            'text': 'Lorem ipsum dolor sit amet',
-            'textColor': 'text-white'
-        }%}
-        </footer>
-    {% endblock %}
 </html>

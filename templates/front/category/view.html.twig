@@ -1,0 +1,27 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %} {{ category.name }}{% endblock %}
+
+{% block main %}
+    <h1>{{ category.name }}</h1>
+
+    {%include 'front/breadcrumb/view.html.twig' with {
+        'breadcrumbElements' : {
+            'home' : {
+                'name': 'Home',
+                'path' : path('homepage'),
+            },
+            'category' : {
+                'name': category.name,
+                'active' : true,
+            },
+        },
+        'currentRoute' : 'category_view'
+    } %}
+    <hr>
+    <div class="row">
+        {% for p in category.product %}
+            {% include 'front/product/product_card.html.twig' with { 'level' : 'small' }%}
+        {% endfor %}
+    </div>
+{% endblock %}
