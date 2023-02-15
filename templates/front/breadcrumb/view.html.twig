@@ -1,0 +1,12 @@
+<ol class="breadcrumb">
+
+    {% for element in breadcrumbElements %}
+        <li class="breadcrumb-item {{ not loop.last and element.active is defined and element.active == true ?: 'active' }}">
+            {% if not loop.last %}
+                <a href="{{ element.path }}">{{ element.name }}</a>
+            {% else %}
+                {{ element.name }}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ol>

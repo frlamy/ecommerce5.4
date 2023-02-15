@@ -2,6 +2,8 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Product;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,9 +13,12 @@ class HomepageController extends AbstractController
 {
     protected $logger;
 
-    public function __construct(LoggerInterface $logger)
+    protected $manager;
+
+    public function __construct(LoggerInterface $logger, EntityManagerInterface $manager)
     {
         $this->logger = $logger;
+        $this->manager = $manager;
     }
 
     /**
@@ -21,7 +26,10 @@ class HomepageController extends AbstractController
      */
     public function homepage(): Response
     {
+        $products = $this->manager->getRepository(Product::class)->findBy([], ['updatedAt' => 'DESC'], 3);
+
         return $this->render('front/homepage/view.html.twig', [
+            'products' => $products
         ]);
     }
 }

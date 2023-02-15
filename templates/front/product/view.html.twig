@@ -1,0 +1,30 @@
+{% extends 'front/layout.html.twig' %}
+
+{% block title %}{{ p.name }}{% endblock %}
+
+{% block main %}
+    {%include 'front/breadcrumb/view.html.twig' with {
+        'breadcrumbElements' : {
+            'home' : {
+                'name': 'Home',
+                'path' : path('homepage'),
+            },
+            'category' : {
+                'name': p.categories|first.name,
+                'path': path('category_view', {'id': p.categories|first.id, 'slug' : p.categories|first.slug}),
+            },
+            'product' : {
+                'name': p.name,
+                'active' : true,
+            },
+        },
+        'currentRoute' : 'product_view'
+    } %}
+
+    {% include('front/product/product_card.html.twig') with {
+        'level' : 'large',
+        'title' : 'h1',
+        'category' : true
+        }
+    %}
+{% endblock %}

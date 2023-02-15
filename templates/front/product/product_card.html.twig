@@ -1,0 +1,48 @@
+{% if level is defined and level == 'large' %}
+    <div class="row">
+{% endif %}
+
+<div class="col-4 pt-3">
+    <div class="card">
+        <img src="{{ p.mainPicture }}" alt="{{ p.name }}" class="img-fluid {{ (level is defined and level == 'large') ? "border border-3" : null}}">
+        {% if level is defined and level == 'small' %}
+            <div class="card-body">
+                <{{ title }} class="card-title">{{ p.name }}</{{ title }}>
+                <p class="card-text">{{ p.price }}</p>
+                <a href="#" class="btn btn-primary">Add</a>
+                <a href="{{ path("product_view", {'id' : p.id}) }}" class="btn btn-success">See more</a>
+            </div>
+            <div class="card-footer text-muted">
+                {% for c in p.categories %}
+                    <a href="{{ path('category_view', {'slug': c.slug, 'id': c.id }) }}"><span class="badge bg-light">{{ c.name }}</span></a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if level is defined and level == 'large' %}
+    <div class="col-8 pt-3">
+        <{{ title }} class="text-muted">{{ p.name }}</{{ title }}>
+        <div class="row mt-3">
+            <div class="col-2">
+                <h2 class="m-0">{{ p.price }}</h2>
+            </div>
+            <div class="col-10 align-self-center">
+                {% if category is defined and category == true %}
+                    {% for c in p.categories %}
+                        <a href="{{ path('category_view', {'slug': c.slug, 'id': c.id }) }}"><span class="badge bg-light">{{ c.name }}</span></a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <p class="fs-4 mt-3">{{ p.shortDescription }}</p>
+
+        <a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Add</a>
+    </div>
+{% endif %}
+
+{% if level is defined and level == 'large' %}
+    </div>
+{% endif %}

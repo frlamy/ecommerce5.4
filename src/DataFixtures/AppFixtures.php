@@ -37,7 +37,10 @@ class AppFixtures extends Fixture
                 ->setCreatedAt(new \DateTimeImmutable())
                 ->setUpdatedAt(new \DateTimeImmutable())
             ;
-            for($p = 0; $p < 100; $p++) {
+
+            $manager->persist($category);
+
+            for($p = 0; $p < random_int(5, 10); $p++) {
                 $product = new Product();
 
                 $product
@@ -48,12 +51,11 @@ class AppFixtures extends Fixture
                     ->setMainPicture($faker->imageUrl(400, 400, true))
                     ->setCreatedAt(new \DateTimeImmutable())
                     ->setUpdatedAt(new \DateTimeImmutable())
+                    ->addCategory($category)
                 ;
 
                 $manager->persist($product);
             }
-
-            $manager->persist($category);
         }
 
         $manager->flush();
