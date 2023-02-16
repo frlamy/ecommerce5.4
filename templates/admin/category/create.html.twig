@@ -4,17 +4,21 @@
 
 {% block main %}
 
-        <h1>New Category</h1>
+    <h1>New Category</h1>
 
-        {{ form_start(formView) }}
+    {{ form_start(formView) }}
 
-        {{ form_errors(formView) }}
+    {{ form_errors(formView) }}
 
-        <div class="row">
-            <div class="col-8">
-                {{ form_row(formView.name) }}
-                {{ form_row(formView.slug) }}
-            </div>
+    <div class="row">
+        <div class="col-8">
+            {{ form_row(formView.name) }}
+            {{ form_row(formView.slug) }}
         </div>
+    </div>
 
+    <button class="btn btn-dark rounded-1" type="submit"><i class="fas fa-save"></i>&nbsp;&nbsp;Create</button>
+
+    {{ form_end(formView) }}
+    {# TODO Display products example from this category #}
 {% endblock %}
