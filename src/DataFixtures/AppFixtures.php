@@ -34,6 +34,7 @@ class AppFixtures extends Fixture
             $category
                 ->setName($faker->category())
                 ->setSlug($this->slugger->slugify($category->getName()))
+                ->setShortDescription($faker->paragraph(1))
                 ->setCreatedAt(new \DateTimeImmutable())
                 ->setUpdatedAt(new \DateTimeImmutable())
             ;

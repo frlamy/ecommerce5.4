@@ -1,0 +1,30 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}New product{% endblock %}
+
+{% block main %}
+
+    <h1>New Product</h1>
+
+    {{ form_start(formView) }}
+
+    {{ form_errors(formView) }}
+
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(formView.name) }}
+            {{ form_row(formView.shortDescription) }}
+            {{ form_row(formView.categories) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(formView.price) }}
+            {{ form_row(formView.mainPicture) }}
+        </div>
+    </div>
+
+    <button class="btn btn-dark rounded-1" type="submit"><i class="fas fa-save"></i>&nbsp;&nbsp;Create</button>
+
+    {{ form_end(formView) }}
+
+    {# TODO Display products example from this category #}
+{% endblock %}

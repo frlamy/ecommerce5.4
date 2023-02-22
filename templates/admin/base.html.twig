@@ -26,14 +26,13 @@
             {% endblock %}
 
             <div class="row h-100">
-
-                <div class="col-2 h-100 border-end">
+                <div class="col-2 h-100 border-end bg-white d-none d-md-block">
                     {% block sidebar %}
                         {% include 'admin/sidebar/sidebar.html.twig' %}
                     {% endblock %}
                 </div>
 
-                <div class="col-10 p-5">
+                <div class="col-md-10 p-5">
                     {% block main %}{% endblock %}
                 </div>
 

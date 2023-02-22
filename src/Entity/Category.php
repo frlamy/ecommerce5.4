@@ -6,12 +6,14 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
 class Category
 {
+    const CATEGORY_PER_PAGE = 20;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,6 +23,13 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=2,
+     *     max=50,
+     *     minMessage="Product name must be at least {{ limit }} characters",
+     *     maxMessage="Product name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $name;
 
@@ -36,13 +45,27 @@ class Category
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Assert\Type("DateTimeImmutable")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * @Assert\Type("DateTimeImmutable")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min=20,
+     *     max=100,
+     *     minMessage="Product description must be at least {{ limit }} characters",
+     *     maxMessage="Product description cannot be longer than {{ limit }} characters"
+     * )
+     */
+    private $shortDescription;
 
     public function __construct()
     {
@@ -122,6 +145,18 @@ class Category
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(string $shortDescription): self
+    {
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }

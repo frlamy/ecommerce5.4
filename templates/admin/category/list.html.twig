@@ -1,0 +1,38 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block main %}
+
+    <h4>Categories management</h4>
+
+    <div class="card rounded-3">
+        <div class="card-body">
+            <p>
+                <a href="{{ path('admin_category_create') }}" class="btn btn-dark rounded-2">
+                    <i class="fa fa-plus"></i>
+                    NEW CATEGORY
+                </a>
+            </p>
+            <table class="table table-secondary">
+                <thead>
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Column heading</th>
+                    <th scope="col">Column heading</th>
+                    <th scope="col">Column heading</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-secondary">
+                    <th scope="row">Secondary</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
