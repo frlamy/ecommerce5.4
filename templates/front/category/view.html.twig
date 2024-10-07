@@ -21,7 +21,7 @@
     <hr>
     <div class="row">
         {% for p in category.product %}
-            {% include 'front/product/product_card.html.twig' with { 'level' : 'small' }%}
+            {% include 'front/product/product_card.html.twig' with { 'level' : level }%}
         {% endfor %}
     </div>
 {% endblock %}

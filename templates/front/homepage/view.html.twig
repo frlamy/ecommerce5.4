@@ -7,8 +7,8 @@
     <div class="row">
         {% for p in products %}
             {% include('front/product/product_card.html.twig') with {
-                'level' : 'small',
-                'title' : 'h5',
+                'level' : 'sm',
+                'header' : 'h5',
             } %}
         {% endfor %}
     </div>

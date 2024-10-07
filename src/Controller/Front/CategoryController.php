@@ -23,11 +23,14 @@ class CategoryController extends AbstractController
     /**
      * @Route("/{slug}-c{id}", name="category_view")
      */
-    public function viewAction(string $slug, int $id): Response
+    public function viewAction(int $id): Response
     {
         $category = $this->em->getRepository(Category::class)->findOneBy(['id' => $id ]);
+
         return $this->render('front/category/view.html.twig', [
-            'category' => $category
+            'category' => $category,
+            'level' => 'sm',
+            'header' => 'h5',
         ]);
     }
 }

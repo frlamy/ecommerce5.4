@@ -1,13 +1,13 @@
-{% if level is defined and level == 'large' %}
+{% if level is defined and level == 'lg' %}
     <div class="row">
 {% endif %}
 
 <div class="col-4 pt-3">
     <div class="card">
-        <img src="{{ p.mainPicture }}" alt="{{ p.name }}" class="img-fluid {{ (level is defined and level == 'large') ? "border border-3" : null}}">
-        {% if level is defined and level == 'small' %}
+        <img src="{{ p.mainPicture }}" alt="{{ p.name }}" class="img-fluid {{ (level is defined and level == 'lg') ? "border border-3" : null}}">
+        {% if level is defined and level == 'sm' %}
             <div class="card-body">
-                <{{ title }} class="card-title">{{ p.name }}</{{ title }}>
+                <{{ header }} class="card-title">{{ p.name }}</{{ header }}>
                 <p class="card-text">{{ p.price }}</p>
                 <a href="#" class="btn btn-primary">Add</a>
                 <a href="{{ path("product_view", {'id' : p.id}) }}" class="btn btn-success">See more</a>
@@ -21,9 +21,9 @@
     </div>
 </div>
 
-{% if level is defined and level == 'large' %}
+{% if level is defined and level == 'lg' %}
     <div class="col-8 pt-3">
-        <{{ title }} class="text-muted">{{ p.name }}</{{ title }}>
+        <{{ header }} class="text-muted">{{ p.name }}</{{ header }}>
         <div class="row mt-3">
             <div class="col-2">
                 <h2 class="m-0">{{ p.price }}</h2>
@@ -43,6 +43,6 @@
     </div>
 {% endif %}
 
-{% if level is defined and level == 'large' %}
+{% if level is defined and level == 'lg' %}
     </div>
 {% endif %}
