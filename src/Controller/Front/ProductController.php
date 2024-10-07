@@ -25,11 +25,17 @@ class ProductController extends AbstractController
         $product = $this->em->getRepository(Product::class)->findOneBy(['id' => $id]);
 
         if (!$product) {
-            throw new NotFoundHttpException("This product does not exist");
+            $this->createNotFoundException("This product does not exist");
+        }
+
+        if ($product->getPublishedAt() !== Product::STATUS_PUBLISHED) {
+            $this->createNotFoundException("This product is not published");
         }
 
         return $this->render('front/product/view.html.twig', [
             'p' => $product,
+            'level' => 'lg',
+            'header' => 'h1',
         ]);
     }
 
