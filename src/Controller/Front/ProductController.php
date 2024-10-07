@@ -28,6 +28,10 @@ class ProductController extends AbstractController
             $this->createNotFoundException("This product does not exist");
         }
 
+        if ($product->getPublishedAt() !== Product::STATUS_PUBLISHED) {
+            $this->createNotFoundException("This product is not published");
+        }
+
         return $this->render('front/product/view.html.twig', [
             'p' => $product,
             'level' => 'lg',

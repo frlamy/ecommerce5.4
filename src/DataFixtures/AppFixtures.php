@@ -51,6 +51,8 @@ class AppFixtures extends Fixture
                     ->setMainPicture($faker->imageUrl(400, 400, true))
                     ->setCreatedAt(new \DateTimeImmutable())
                     ->setUpdatedAt(new \DateTimeImmutable())
+                    ->setPublishedAt(null)
+                    ->setPublished(false)
                     ->addCategory($category)
                 ;
 

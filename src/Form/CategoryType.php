@@ -28,12 +28,13 @@ class CategoryType extends AbstractType
                 'required' => false,
                 'disabled' => true,
             ])
-           // ->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
+           ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'onPostSubmit']);
         ;
     }
 
-    public function onPreSubmit(FormEvent $event): void
+    public function onPostSubmit(FormEvent $event): void
     {
+        dd($event);
         // TODO
     }
 

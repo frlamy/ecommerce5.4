@@ -2,21 +2,21 @@
     <ul class="list-unstyled ps-0">
         <li class="mb-1">
             <button
-                    data-bs-toggle="collapse"
-                    data-bs-target="#edition-collapse"
-                    aria-expanded="{{ app.request.get('_route') starts with 'admin.product' or app.request.get('_route') starts with 'admin.category' ? 'true' : 'false' }}"
-                    class="btn btn-toggle align-items-center rounded {{ app.request.get('_route') starts with 'admin.product' or app.request.get('_route') starts with 'admin.category' ? '' : 'collapsed' }}">
+                data-bs-toggle="collapse"
+                data-bs-target="#edition-collapse"
+                aria-expanded="{{ app.request.get('_route') starts with 'admin.product' or app.request.get('_route') starts with 'admin.category' ? 'true' : 'false' }}"
+                class="btn btn-toggle align-items-center rounded {{ app.request.get('_route') starts with 'admin.product' or app.request.get('_route') starts with 'admin.category' ? '' : 'collapsed' }}">
                 Edition
             </button>
             <div class="collapse {{ app.request.get('_route') starts with 'admin.product' or app.request.get('_route') starts with 'admin.category' ? 'show' : '' }}" id="edition-collapse">
                 <ul class="btn-toggle-nav fw-normal pb-1 small mx-2">
                     <li>
-                        <a href="{{ path('admin.product.list') }}" class="text-decoration-none {{ app.request.get('_route') == 'admin.product.list' ? 'fw-bold' : '' }}">
+                        <a href="{{ path('admin.product.index') }}" class="text-decoration-none {{ app.request.get('_route') == 'admin.product.list' ? 'fw-bold' : '' }}">
                             Products
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('admin.category.list') }}" class="text-decoration-none {{ app.request.get('_route') == 'admin.category.list' ? 'fw-bold' : '' }}">
+                        <a href="{{ path('admin.category.index') }}" class="text-decoration-none {{ app.request.get('_route') == 'admin.category.list' ? 'fw-bold' : '' }}">
                             Categories
                         </a>
                     </li>

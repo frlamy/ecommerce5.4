@@ -26,7 +26,7 @@ class HomepageController extends AbstractController
      */
     public function homepage(): Response
     {
-        $products = $this->manager->getRepository(Product::class)->findBy([], ['updatedAt' => 'DESC'], 3);
+        $products = $this->manager->getRepository(Product::class)->findBy(['published' => PRODUCT::STATUS_PUBLISHED], ['updatedAt' => 'DESC'], 6);
 
         return $this->render('front/homepage/view.html.twig', [
             'products' => $products

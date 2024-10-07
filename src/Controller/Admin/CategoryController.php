@@ -28,13 +28,13 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="admin.category.list")
+     * @Route("/index", name="admin.category.index")
      */
     public function index(): Response
     {
         $categories = $this->em->getRepository(Category::class)->findAll();
 
-        return $this->render('admin/category/list.html.twig', [
+        return $this->render('admin/category/index.html.twig', [
             'categories' => $categories
         ]);
     }
@@ -59,26 +59,33 @@ class CategoryController extends AbstractController
             $this->em->persist($category);
             $this->em->flush();
 
-            return $this->redirectToRoute('admin.category.update', ['id' => $category->getId()]);
+            return $this->redirectToRoute('admin.category.edit', ['id' => $category->getId()]);
         }
 
-        return $this->render('/admin/category/create.html.twig', [
+        return $this->render('/admin/category/form.html.twig', [
             'formView' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/update/c-{id}", name="admin.category.update", requirements={"id":"\d+"})
+     * @Route("/update/{slug}-c{id}", name="admin.category.edit", requirements={"slug": "[a-z0-9\-]+", "id":"\d+"})
      */
-    public function updateAction(int $id): Response
+    public function editAction(int $id): Response
     {
         $category = $this->em->getRepository(Category::class)->find($id);
 
+        if (null === $category) {
+            return $this->redirectToRoute('admin.category.index');
+        }
+
         dd('stop');
         //todo
+
         $form = $this->createForm(CategoryType::class, $category);
-        return $this->render('/admin/category/update.html.twig', [
+
+        return $this->render('/admin/category/form.html.twig', [
             'formView' => $form->createView(),
+            'category' => $category
         ]);
     }
 }

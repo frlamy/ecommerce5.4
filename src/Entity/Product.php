@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
+    public const STATUS_PUBLISHED = 1;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -58,6 +60,16 @@ class Product
      * @ORM\Column(type="string", length=255)
      */
     private $shortDescription;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $publishedAt;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $published;
 
     public function __construct()
     {
@@ -177,6 +189,30 @@ class Product
     public function setShortDescription(string $shortDescription): self
     {
         $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeImmutable
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(?\DateTimeImmutable $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(bool $published): self
+    {
+        $this->published = $published;
 
         return $this;
     }

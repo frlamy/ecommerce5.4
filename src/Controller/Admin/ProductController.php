@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
+/**
+ * @Route("admin/product")
+ */
 class ProductController extends AbstractController
 {
     /** @var EntityManagerInterface  */
@@ -24,13 +27,14 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="admin.product.list")
+     * @Route("/index", name="admin.product.index")
      */
     public function index(): Response
     {
+        // TODO PAGINATED CONTENT
         $products = $this->em->getRepository(Product::class)->findAll();
 
-        return $this->render('admin/product/list.html.twig', [
+        return $this->render('admin/product/index.html.twig', [
             'products' => $products
         ]);
     }
@@ -55,24 +59,30 @@ class ProductController extends AbstractController
             $this->em->persist($product);
             $this->em->flush();
 
-            return $this->redirectToRoute('admin.product.update', ['id' => $product->getId()]);
+            return $this->redirectToRoute('admin.product.edit', ['id' => $product->getId()]);
         }
 
-        return $this->render('/admin/product/create.html.twig', [
+        return $this->render('/admin/product/form.html.twig', [
             'formView' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/update/c-{id}", name="admin.product.update", requirements={"id":"\d+"})
+     * @Route("/edit/{slug}-p{id}", name="admin.product.edit", requirements={"slug": "[a-z0-9\-]+", "id":"\d+"})
      */
-    public function updateAction(int $id): Response
+    public function editAction(int $id): Response
     {
         $product = $this->em->getRepository(Product::class)->find($id);
 
+        if (null === $product) {
+            return $this->redirectToRoute('admin.category.index');
+        }
+
         dd('stop');
         //todo
+
         $form = $this->createForm(ProductType::class, $product);
+
         return $this->render('/admin/product/update.html.twig', [
             'formView' => $form->createView(),
         ]);
