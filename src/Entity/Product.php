@@ -12,7 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-    public const STATUS_PUBLISHED = 1;
+    public const STATUS_DRAFT = 'draft';
+
+    public const STATUS_PUBLISHED = 'published';
 
     /**
      * @ORM\Id
@@ -67,9 +69,9 @@ class Product
     private $publishedAt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
-    private $published;
+    private $status;
 
     public function __construct()
     {
@@ -205,14 +207,14 @@ class Product
         return $this;
     }
 
-    public function isPublished(): ?bool
+    public function getStatus(): string
     {
-        return $this->published;
+        return $this->status;
     }
 
-    public function setPublished(bool $published): self
+    public function setStatus(string $status): self
     {
-        $this->published = $published;
+        $this->status = $status;
 
         return $this;
     }

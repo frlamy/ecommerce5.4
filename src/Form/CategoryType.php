@@ -18,24 +18,12 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom',
+                'label' => false,
                 'attr' => [
-                    'placeholder' => 'Nom de la catégorie',
+                    'placeholder' => 'Category name',
                 ]
             ])
-            ->add('slug', TextType::class, [
-                'label' => 'Slug',
-                'required' => false,
-                'disabled' => true,
-            ])
-           ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'onPostSubmit']);
         ;
-    }
-
-    public function onPostSubmit(FormEvent $event): void
-    {
-        dd($event);
-        // TODO
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
+use App\Form\ProductType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,10 +52,10 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO : listener date et slug
-            $product->setSlug($this->slugger->slug($product->getName()));
-            $product->setCreatedAt(new \DateTimeImmutable());
-            $product->setUpdatedAt(new \DateTimeImmutable());
+//            // TODO : listener date et slug
+//            $product->setSlug($this->slugger->slug($product->getName()));
+//            $product->setCreatedAt(new \DateTimeImmutable());
+//            $product->setUpdatedAt(new \DateTimeImmutable());
 
             $this->em->persist($product);
             $this->em->flush();
