@@ -52,14 +52,13 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // TODO : listener date et slug
-            $category->setSlug($this->slugger->slug($category->getName()));
             $category->setCreatedAt(new \DateTimeImmutable());
             $category->setUpdatedAt(new \DateTimeImmutable());
 
             $this->em->persist($category);
             $this->em->flush();
 
-            return $this->redirectToRoute('admin.category.edit', ['id' => $category->getId()]);
+            return $this->redirectToRoute('admin.category.edit', ['id' => $category->getId(), 'slug' => $category->getSlug()]);
         }
 
         return $this->render('/admin/category/form.html.twig', [

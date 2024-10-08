@@ -52,7 +52,7 @@ class AppFixtures extends Fixture
                     ->setCreatedAt(new \DateTimeImmutable())
                     ->setUpdatedAt(new \DateTimeImmutable())
                     ->setPublishedAt(null)
-                    ->setPublished(false)
+                    ->setStatus(Product::STATUS_DRAFT)
                     ->addCategory($category)
                 ;
 
