@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductType extends AbstractType
@@ -60,15 +61,34 @@ class ProductType extends AbstractType
                     'choice_label' => 'name',
                     'multiple' => true,
                 ]
-            );
+            )
+            ->addEventListener(
+                FormEvents::PRE_SET_DATA,
+                [$this, 'onPreSetData']
+            )
+            ->addEventListener(
+                FormEvents::POST_SUBMIT,
+                [$this, 'onPostSubmit']
+            )
         ;
+
+        // Idem qu'au dessus
+//        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+//            /** @var Product $product */
+//            $product = $event->getData();
+//
+//            $product->setPrice($product->getPrice() / 100);
+//        });
     }
 
 //    public function onPreSetData(FormEvent $event): void
 //    {
-//        $form = $event->getForm();
-//        dd($form, $event);
-//        // TODO
+//        /** @var Product $product */
+//        $product = $event->getData();
+//
+//        if ($product !== null) {
+//           //TODO
+//        }
 //    }
 //
 //    public function onPostSetData(FormEvent $event): void
@@ -87,9 +107,12 @@ class ProductType extends AbstractType
 //
 //    public function onPostSubmit(FormEvent $event): void
 //    {
-//        $form = $event->getForm();
-//        dd($form, $event);
-//        // TODO
+//        /** @var Product $product */
+//        $product = $event->getData();
+//
+//        if ($product !== null) {
+//            //TODO
+//        }
 //    }
 
 

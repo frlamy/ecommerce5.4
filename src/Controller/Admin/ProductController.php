@@ -52,11 +52,6 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            // TODO : listener date et slug
-//            $product->setSlug($this->slugger->slug($product->getName()));
-//            $product->setCreatedAt(new \DateTimeImmutable());
-//            $product->setUpdatedAt(new \DateTimeImmutable());
-
             $this->em->persist($product);
             $this->em->flush();
 
@@ -71,7 +66,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/edit/{slug}-p{id}", name="admin.product.edit", requirements={"slug": "[a-z0-9\-]+", "id":"\d+"})
      */
-    public function editAction(int $id): Response
+    public function editAction(int $id, Request $request): Response
     {
         $product = $this->em->getRepository(Product::class)->find($id);
 
@@ -79,13 +74,17 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('admin.category.index');
         }
 
-        dd('stop');
-        //todo
-
         $form = $this->createForm(ProductType::class, $product);
 
-        return $this->render('/admin/product/update.html.twig', [
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $this->em->flush();
+        }
+
+        return $this->render('/admin/product/form.html.twig', [
             'formView' => $form->createView(),
+            'product' => $product
         ]);
     }
 }

@@ -1,9 +1,10 @@
 {% extends 'admin/layout.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% set productTitle = product is defined ? product.id ~ ' - ' ~ product.name : 'New Product' %}
+{% block title %}{{ productTitle }}{% endblock %}
 
 {% block main %}
-    <h1>{% if product is defined %}{{ product.id }} - {{ product.name }}{% else %}New Product{% endif %}</h1>
+    <h1>{{ productTitle }}</h1>
     <hr>
     {{ form_start(formView) }}
 
