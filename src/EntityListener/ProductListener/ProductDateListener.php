@@ -10,6 +10,9 @@ class ProductDateListener
     {
         if ($entity->getCreatedAt() === null) {
             $entity->setCreatedAt(new \DateTimeImmutable());
+
+            // Update date at every save
+            $entity->setUpdatedAt(new \DateTimeImmutable());
         }
     }
 

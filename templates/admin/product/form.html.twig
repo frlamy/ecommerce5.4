@@ -6,6 +6,15 @@
 {% block main %}
     <h1>{{ productTitle }}</h1>
     <hr>
+
+    {% for type, messages in app.flashes %}
+        <div class="alert alert-{{ type }}">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
     {{ form_start(formView) }}
 
     {{ form_errors(formView) }}

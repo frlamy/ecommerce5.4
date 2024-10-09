@@ -62,14 +62,14 @@ class ProductType extends AbstractType
                     'multiple' => true,
                 ]
             )
-            ->addEventListener(
-                FormEvents::PRE_SET_DATA,
-                [$this, 'onPreSetData']
-            )
-            ->addEventListener(
-                FormEvents::POST_SUBMIT,
-                [$this, 'onPostSubmit']
-            )
+//            ->addEventListener(
+//                FormEvents::PRE_SET_DATA,
+//                [$this, 'onPreSetData']
+//            )
+//            ->addEventListener(
+//                FormEvents::POST_SUBMIT,
+//                [$this, 'onPostSubmit']
+//            )
         ;
 
         // Idem qu'au dessus

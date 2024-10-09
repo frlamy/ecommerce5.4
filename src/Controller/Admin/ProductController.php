@@ -55,7 +55,9 @@ class ProductController extends AbstractController
             $this->em->persist($product);
             $this->em->flush();
 
-            return $this->redirectToRoute('admin.product.edit', ['id' => $product->getId()]);
+            $this->addFlash('success', 'Product successfully created');
+
+            return $this->redirectToRoute('admin.product.edit', ['id' => $product->getId(), 'slug' => $product->getSlug()]);
         }
 
         return $this->render('/admin/product/form.html.twig', [
@@ -80,6 +82,8 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted()) {
             $this->em->flush();
+
+            $this->addFlash('success', 'Product updated successfully');
         }
 
         return $this->render('/admin/product/form.html.twig', [

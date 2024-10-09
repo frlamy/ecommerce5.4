@@ -4,9 +4,17 @@
 {% block title %}New category{% endblock %}
 
 {% block main %}
-
     <h1>{% if category is defined %}{{ category.id }} - {{ category.name }}{% else %}New Category{% endif %}</h1>
     <hr>
+
+    {% for type, messages in app.flashes %}
+        <div class="alert alert-{{ type }}">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
     {{ form_start(formView) }}
 
     {{ form_errors(formView) }}

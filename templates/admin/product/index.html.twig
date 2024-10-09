@@ -3,7 +3,16 @@
 {% block title %}Products list{% endblock %}
 
 {% block main %}
+
     <div class="col-10">
+        {% for type, messages in app.flashes %}
+            <div class="alert alert-{{ type }}">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
         <h1>Products:</h1>
         <hr>
         <a href="{{ path('admin.product.create') }}" class="btn btn-info btn-sm rounded-3">+ Create</a>

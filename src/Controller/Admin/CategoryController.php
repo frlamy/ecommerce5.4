@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/admin/category")
@@ -19,12 +18,9 @@ class CategoryController extends AbstractController
     /** @var EntityManagerInterface  */
     private $em;
 
-    /** @var SluggerInterface */
-    private $slugger;
 
-    public function __construct(EntityManagerInterface $em, SluggerInterface $slugger) {
+    public function __construct(EntityManagerInterface $em) {
         $this->em = $em;
-        $this->slugger = $slugger;
     }
 
     /**
@@ -51,12 +47,10 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO : listener date et slug
-            $category->setCreatedAt(new \DateTimeImmutable());
-            $category->setUpdatedAt(new \DateTimeImmutable());
-
             $this->em->persist($category);
             $this->em->flush();
+
+            $this->addFlash('success', 'Category successfully created');
 
             return $this->redirectToRoute('admin.category.edit', ['id' => $category->getId(), 'slug' => $category->getSlug()]);
         }
@@ -69,7 +63,7 @@ class CategoryController extends AbstractController
     /**
      * @Route("/update/{slug}-c{id}", name="admin.category.edit", requirements={"slug": "[a-z0-9\-]+", "id":"\d+"})
      */
-    public function editAction(int $id): Response
+    public function editAction(int $id, Request $request): Response
     {
         $category = $this->em->getRepository(Category::class)->find($id);
 
@@ -77,10 +71,15 @@ class CategoryController extends AbstractController
             return $this->redirectToRoute('admin.category.index');
         }
 
-        dd('stop');
-        //todo
-
         $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+
+            $this->addFlash('success', 'Category updated successfully');
+        }
 
         return $this->render('/admin/category/form.html.twig', [
             'formView' => $form->createView(),
