@@ -19,12 +19,8 @@ class ProductController extends AbstractController
     /** @var EntityManagerInterface  */
     private $em;
 
-    /** @var SluggerInterface */
-    private $slugger;
-
-    public function __construct(EntityManagerInterface $em, SluggerInterface $slugger) {
+    public function __construct(EntityManagerInterface $em) {
         $this->em = $em;
-        $this->slugger = $slugger;
     }
 
     /**
@@ -32,7 +28,7 @@ class ProductController extends AbstractController
      */
     public function index(): Response
     {
-        // TODO PAGINATED CONTENT
+        // TODO PAGINATED CONTENT //
         $products = $this->em->getRepository(Product::class)->findAll();
 
         return $this->render('admin/product/index.html.twig', [
@@ -55,7 +51,7 @@ class ProductController extends AbstractController
             $this->em->persist($product);
             $this->em->flush();
 
-            $this->addFlash('success', 'Product successfully created');
+            $this->addFlash('success', 'Le produit '. $product->getName() .' a bien été créé');
 
             return $this->redirectToRoute('admin.product.edit', ['id' => $product->getId(), 'slug' => $product->getSlug()]);
         }
@@ -80,10 +76,11 @@ class ProductController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            $this->addFlash('success', 'Product updated successfully');
+            $this->addFlash('success', 'Le produit '. $product->getName() .' a bien été mis à jour');
+            return $this->redirectToRoute('admin.product.index');
         }
 
         return $this->render('/admin/product/form.html.twig', [

@@ -1,6 +1,6 @@
 {% extends 'admin/layout.html.twig' %}
 
-{% set productTitle = product is defined ? product.id ~ ' - ' ~ product.name : 'New Product' %}
+{% set productTitle = product is defined ? product.id ~ ' - ' ~ product.name : 'Créer un produit' %}
 {% block title %}{{ productTitle }}{% endblock %}
 
 {% block main %}
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <button class="btn btn-dark rounded-1" type="submit"><i class="fas fa-save"></i>&nbsp;&nbsp;Save</button>
+    <button class="btn btn-dark rounded-1" type="submit"><i class="fas fa-save"></i>&nbsp;&nbsp;Enregistrer</button>
 
     {{ form_end(formView) }}
 {% endblock %}

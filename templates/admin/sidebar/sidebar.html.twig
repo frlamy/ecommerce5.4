@@ -11,13 +11,13 @@
             <div class="collapse {{ app.request.get('_route') starts with 'admin.product' or app.request.get('_route') starts with 'admin.category' ? 'show' : '' }}" id="edition-collapse">
                 <ul class="btn-toggle-nav fw-normal pb-1 small mx-2">
                     <li>
-                        <a href="{{ path('admin.product.index') }}" class="text-decoration-none {{ app.request.get('_route') == 'admin.product.list' ? 'fw-bold' : '' }}">
-                            Products
+                        <a href="{{ path('admin.product.index') }}" class="text-decoration-none {{ app.request.get('_route') starts with 'admin.product' ? 'fw-bold' : '' }}">
+                            Produits
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('admin.category.index') }}" class="text-decoration-none {{ app.request.get('_route') == 'admin.category.list' ? 'fw-bold' : '' }}">
-                            Categories
+                        <a href="{{ path('admin.category.index') }}" class="text-decoration-none {{ app.request.get('_route') starts with 'admin.category' ? 'fw-bold' : '' }}">
+                            Catégories
                         </a>
                     </li>
                 </ul>

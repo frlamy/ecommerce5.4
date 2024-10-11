@@ -6,6 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProductRepository::class)
@@ -25,16 +26,23 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner le nom du produit")
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 50,
+     *     minMessage = "Le nom du produit doit contenir {{ limit }} caractères minimum",
+     *     maxMessage = "Le nom du produit doit contenir {{ limit }} caractères maximum")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $slug;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Veuillez renseigner un prix")
      */
     private $price;
 
@@ -50,16 +58,28 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner un media associé au produit")
+     * @Assert\Url(message="-> piscum.photos")
      */
     private $mainPicture;
 
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="product")
+     * @Assert\Count(
+     *      min = 1,
+     *      minMessage = "Veuillez renseigner une ou plusieurs catégories associées au produit"
+     * )
      */
     private $categories;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner une description produit")
+     * @Assert\Length(
+     *      min = 25,
+     *      max = 255,
+     *      minMessage = "Le nom du produit doit contenir {{ limit }} caractères minimum",
+     *      maxMessage = "Le nom du produit doit contenir {{ limit }} caractères maximum")
      */
     private $shortDescription;
 
@@ -108,12 +128,12 @@ class Product
         return $this;
     }
 
-    public function getPrice(): ?float
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(float $price): self
+    public function setPrice(?int $price): self
     {
         $this->price = $price;
 

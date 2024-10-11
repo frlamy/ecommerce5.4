@@ -22,6 +22,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        // Créer une instance de Faker en spécifiant la locale française
         $faker = Factory::create('fr_FR');
 
         $faker->addProvider(new Prices($faker));

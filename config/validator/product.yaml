@@ -1,0 +1,22 @@
+#App\Entity\Product:
+#  properties:
+#    name:
+#      - NotBlank: { message: "Veuillez renseigner le nom du produit" }
+#      - Length:
+#          {
+#            min: 5,
+#            max: 50,
+#            minMessage: "Le nom du produit doit contenir {{ limit }} caractères minimum",
+#            maxMessage: "Le nom du produit doit contenir {{ limit }} caractères maximum",
+#          }
+#    price:
+#      - NotBlank: { message: "Veuillez renseigner un prix" }
+#    mainPicture:
+#      - NotBlank: { message: "Veuillez renseigner un media associé au produit" }
+#      - Url: { message: "-> piscum.photos" }
+#    categories:
+#      - Count:
+#          {
+#            min: 1,
+#            minMessage: "Veuillez renseigner une ou plusieurs catégories associées au produit"
+#          }
