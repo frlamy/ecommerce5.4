@@ -21,7 +21,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}-c{id}", name="category_view")
+     * @Route("/{slug}-c{id}.html", name="category.view")
      */
     public function viewAction(int $id): Response
     {
@@ -31,6 +31,19 @@ class CategoryController extends AbstractController
             'category' => $category,
             'level' => 'sm',
             'header' => 'h5',
+        ]);
+    }
+
+    /**
+     * @Route("/toutes-nos-catégories.html", name="category.list") Response
+     */
+    public function listAction(): Response
+    {
+        // Todo query à la mano pour meilleure sélection. Tri par popularité ie.
+        $categories = $this->em->getRepository(Category::class)->findAll();
+
+        return $this->render('front/category/list.html.twig', [
+            'categories' => $categories,
         ]);
     }
 }

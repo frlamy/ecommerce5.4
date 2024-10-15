@@ -18,7 +18,7 @@ class ProductController extends AbstractController
         $this->em = $em;
     }
     /**
-     * @Route("/p{id}", name="product_view")
+     * @Route("/p{id}.html", name="product_view")
      */
     public function viewAction(int $id): Response
     {

@@ -11,7 +11,7 @@
             },
             'category' : {
                 'name': p.categories|first.name,
-                'path': path('category_view', {'id': p.categories|first.id, 'slug' : p.categories|first.slug}),
+                'path': path('category.view', {'id': p.categories|first.id, 'slug' : p.categories|first.slug}),
             },
             'product' : {
                 'name': p.name,

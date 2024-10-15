@@ -14,7 +14,7 @@
             </div>
             <div class="card-footer text-muted">
                 {% for c in p.categories %}
-                    <a href="{{ path('category_view', {'slug': c.slug, 'id': c.id }) }}"><span class="badge bg-light">{{ c.name }}</span></a>
+                    <a href="{{ path('category.view', {'slug': c.slug, 'id': c.id }) }}"><span class="badge bg-light">{{ c.name }}</span></a>
                 {% endfor %}
             </div>
         {% endif %}
@@ -31,7 +31,7 @@
             <div class="col-10 align-self-center">
                 {% if category is defined and category == true %}
                     {% for c in p.categories %}
-                        <a href="{{ path('category_view', {'slug': c.slug, 'id': c.id }) }}"><span class="badge bg-light">{{ c.name }}</span></a>
+                        <a href="{{ path('category.view', {'slug': c.slug, 'id': c.id }) }}"><span class="badge bg-light">{{ c.name }}</span></a>
                     {% endfor %}
                 {% endif %}
             </div>
