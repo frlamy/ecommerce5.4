@@ -28,7 +28,7 @@ class HomepageController extends AbstractController
     {
         $products = $this->manager->getRepository(Product::class)->findBy(['status' => PRODUCT::STATUS_PUBLISHED], ['updatedAt' => 'DESC'], 6);
 
-        return $this->render('front/homepage/view.html.twig', [
+        return $this->render('@template/homepage/view.html.twig', [
             'products' => $products
         ]);
     }

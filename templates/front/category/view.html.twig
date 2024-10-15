@@ -1,11 +1,11 @@
-{% extends 'front/layout.html.twig' %}
+{% extends '@template/layout.html.twig' %}
 
 {% block title %} {{ category.name }}{% endblock %}
 
 {% block main %}
     <h1>{{ category.name }}</h1>
 
-    {%include 'front/breadcrumb/view.html.twig' with {
+    {%include '@template/breadcrumb/view.html.twig' with {
         'breadcrumbElements' : {
             'home' : {
                 'name': 'Home',
@@ -21,7 +21,7 @@
     <hr>
     <div class="row">
         {% for p in category.product %}
-            {% include 'front/product/product_card.html.twig' with { 'level' : level }%}
+            {% include '@template/product/product_card.html.twig' with { 'level' : level }%}
         {% endfor %}
     </div>
 {% endblock %}

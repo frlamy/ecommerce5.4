@@ -32,7 +32,7 @@ class ProductController extends AbstractController
             $this->createNotFoundException("This product is not published");
         }
 
-        return $this->render('front/product/view.html.twig', [
+        return $this->render('@template/product/view.html.twig', [
             'p' => $product,
             'level' => 'lg',
             'header' => 'h1',

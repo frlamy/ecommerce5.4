@@ -1,0 +1,19 @@
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ main_title }}</a>
+    <div class="dropdown-menu">
+
+        <{{ header }} class="dropdown-header">{{ header_title }}</{{ header }}>
+
+        {% for entity in entities %}
+            {% include '@template/navbar/atoms/nav-item.html.twig' with {
+                'item' : entity,
+                'classLink' : 'dropdown-item',
+                'li' : false
+            } %}
+        {% endfor %}
+
+        <div class="dropdown-divider"></div>
+
+        <a class="dropdown-item text-bold" href="{{ footer_url }}">Voir tout</a>
+    </div>
+</li>

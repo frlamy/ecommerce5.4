@@ -27,7 +27,7 @@ class CategoryController extends AbstractController
     {
         $category = $this->em->getRepository(Category::class)->findOneBy(['id' => $id ]);
 
-        return $this->render('front/category/view.html.twig', [
+        return $this->render('@template/category/view.html.twig', [
             'category' => $category,
             'level' => 'sm',
             'header' => 'h5',
@@ -42,7 +42,7 @@ class CategoryController extends AbstractController
         // Todo query à la mano pour meilleure sélection. Tri par popularité ie.
         $categories = $this->em->getRepository(Category::class)->findAll();
 
-        return $this->render('front/category/list.html.twig', [
+        return $this->render('@template/category/list.html.twig', [
             'categories' => $categories,
         ]);
     }

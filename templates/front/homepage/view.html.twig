@@ -1,4 +1,4 @@
-{% extends 'front/layout.html.twig' %}
+{% extends '@template/layout.html.twig' %}
 
 {% block main %}
     <h1>E-CO 5.4</h1>
@@ -6,7 +6,7 @@
 
     <div class="row">
         {% for p in products %}
-            {% include('front/product/product_card.html.twig') with {
+            {% include('@template/product/product_card.html.twig') with {
                 'level' : 'sm',
                 'header' : 'h5',
             } %}

@@ -27,9 +27,7 @@ class MainMenuController extends AbstractController
 //            'action' => $this->generateUrl('ajax_global_search'),
 //        ]);
 
-        dump($navigation);
-
-        return $this->render('front/navbar/navbar.html.twig', [
+        return $this->render('@template/navbar/organism/navbar.html.twig', [
             'navigation' => $navigation,
         ]);
     }

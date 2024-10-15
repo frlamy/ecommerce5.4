@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand mx-3" href="{{ navigation.homepage_link.url }}">{{ navigation.homepage_link.name }}</a>
+            <a class="navbar-brand mx-5" href="{{ navigation.homepage_link.url }}">{{ navigation.homepage_link.name }}</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                 <ul class="navbar-nav me-auto">
 
                     {# Menu déroulant catégories #}
-                    {% include 'nav/item-dropdown.html.twig' with {
+                    {% include '@template/navbar/molecules/nav-item-dropdown.html.twig' with {
                         'main_title' : "Catégories",
                         'header_title' : "Nos catégories phares",
                         'header' : 'h6',
@@ -23,10 +23,11 @@
 
                     {% for navItem in navigation %}
                         {% if navItem.type is defined and navItem.type == 'item' %}
-                            {% include 'nav/item.html.twig' with {
+                            {% include '@template/navbar/atoms/nav-item.html.twig' with {
                                 'item' : navItem,
                                 'classItem' : 'nav-item',
                                 'classLink' : 'nav-link',
+                                'li' : true,
                             } %}
                         {% endif %}
                     {% endfor %}

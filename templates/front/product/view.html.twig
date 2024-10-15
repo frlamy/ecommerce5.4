@@ -1,9 +1,9 @@
-{% extends 'front/layout.html.twig' %}
+{% extends '@template/layout.html.twig' %}
 
 {% block title %}{{ p.name }}{% endblock %}
 
 {% block main %}
-    {%include 'front/breadcrumb/view.html.twig' with {
+    {%include '@template/breadcrumb/view.html.twig' with {
         'breadcrumbElements' : {
             'home' : {
                 'name': 'Home',
@@ -21,7 +21,7 @@
         'currentRoute' : 'product_view'
     } %}
 
-    {% include('front/product/product_card.html.twig') with {
+    {% include('@template/product/product_card.html.twig') with {
         'level' : level,
         'header' : header,
         'category' : true

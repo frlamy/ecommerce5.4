@@ -20,7 +20,6 @@
     <body class="d-flex flex-column h-100">
         {% block navbar %}
             {{ render(controller('App\\Controller\\Front\\MainMenuController::headerAction')) }}
-{#            {% include 'front/navbar/navbar.html.twig' %}#}
         {% endblock %}
 
         <div class="container pt-5">
@@ -30,19 +29,19 @@
         {% block footer %}
 
             <footer class="footer row mt-auto pt-4">
-                {% include 'front/footer/view.html.twig' with {
+                {% include '@template/footer/view.html.twig' with {
                     'title': 'About',
                     'icon': 'fas fa-info-circle',
                     'text': 'Nous contacter',
                     'textColor': 'text-white'
                 }%}
-                {% include 'front/footer/view.html.twig' with {
+                {% include '@template/footer/view.html.twig' with {
                     'title': 'Garantie',
                     'icon': 'fas fa-check',
                     'text': 'Un service après vente 24/7',
                     'textColor': 'text-white'
                 }%}
-                {% include 'front/footer/view.html.twig' with {
+                {% include '@template/footer/view.html.twig' with {
                     'title': 'Safe',
                     'icon': 'fas fa-lock',
                     'text': 'Paiement sécurisé',
