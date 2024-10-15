@@ -19,9 +19,8 @@
     </head>
     <body class="d-flex flex-column h-100">
         {% block navbar %}
-            <header>
-                {% include 'front/navbar/navbar.html.twig' %}
-            </header>
+            {{ render(controller('App\\Controller\\Front\\MainMenuController::headerAction')) }}
+{#            {% include 'front/navbar/navbar.html.twig' %}#}
         {% endblock %}
 
         <div class="container pt-5">

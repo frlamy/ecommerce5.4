@@ -29,7 +29,7 @@ class Product
      * @Assert\NotBlank(message="Veuillez renseigner le nom du produit")
      * @Assert\Length(
      *     min = 5,
-     *     max = 50,
+     *     max = 255,
      *     minMessage = "Le nom du produit doit contenir {{ limit }} caractères minimum",
      *     maxMessage = "Le nom du produit doit contenir {{ limit }} caractères maximum")
      */
@@ -109,7 +109,7 @@ class Product
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -121,7 +121,7 @@ class Product
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
 

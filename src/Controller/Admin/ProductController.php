@@ -79,7 +79,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            $this->addFlash('success', 'Le produit '. $product->getName() .' a bien été mis à jour');
+            $this->addFlash('success', 'Le produit '. $product->getName() .' a bien été modifié');
             return $this->redirectToRoute('admin.product.index');
         }
 

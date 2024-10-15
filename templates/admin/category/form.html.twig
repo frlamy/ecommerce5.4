@@ -1,7 +1,7 @@
 {% extends 'admin/layout.html.twig' %}
 
 
-{% block title %}New category{% endblock %}
+{% block title %}{% if category is defined %}Modifier : {{ category.name }}{% else %}Nouvelle catégorie{% endif %}{% endblock %}
 
 {% block main %}
     <h1>{% if category is defined %}{{ category.id }} - {{ category.name }}{% else %}Nouvelle catégorie{% endif %}</h1>
@@ -20,8 +20,15 @@
     {{ form_errors(formView) }}
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             {{ form_row(formView.name) }}
+            {{ form_row(formView.shortDescription) }}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-2">
+            {{ form_row(formView.isInMenu) }}
         </div>
     </div>
 

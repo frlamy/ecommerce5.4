@@ -21,6 +21,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Menu</th>
                 </tr>
             </thead>
 
@@ -30,6 +31,7 @@
                     <th scope="row">{{ category.id }}</th>
                     <td>{{ category.name }}</td>
                     <td><a href="{{ path('admin.category.edit', {'id': category.id, 'slug': category.slug}) }}" type="button" class="btn btn-info btn-sm rounded-3"><i class="fa-solid fa-arrow-right"></i>&nbsp;Update</a></td>
+                    <td>{% if category.inMenu %}<i class="fa fa-check" aria-hidden="true"></i>{% endif %}</td>
                 </tr>
             {% endfor %}
             </tbody>

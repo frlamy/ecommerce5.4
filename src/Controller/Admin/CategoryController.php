@@ -78,7 +78,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->flush();
 
-            $this->addFlash('success', 'La catégorie '. $category->getName() .' a bien été créée');
+            $this->addFlash('success', 'La catégorie '. $category->getName() .' a bien été modifiée');
         }
 
         return $this->render('/admin/category/form.html.twig', [

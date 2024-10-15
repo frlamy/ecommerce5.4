@@ -5,7 +5,11 @@ namespace App\Form;
 use App\Entity\Category;
 use App\Form\Type\DateTimePickerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -18,12 +22,26 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => false,
-                'required' => false,
+                'label' => 'Nom de la categorie :',
                 'attr' => [
-                    'placeholder' => 'Category name',
+                    'placeholder' => 'Nom de la catégorie',
                 ]
             ])
+            ->add('shortDescription', TextareaType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Description de la catégorie',
+                ]
+            ])
+            ->add('isInMenu', ChoiceType::class, [
+                'label' => 'Navbar',
+                'placeholder' => '-- Dans le menu de navbar --',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,
+                ]
+            ])
+
         ;
     }
 

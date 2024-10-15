@@ -46,6 +46,23 @@ class Category
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Assert\Type("boolean")
+     */
+    private $isInMenu;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez renseigner la description de la catégorie")
+     * @Assert\Length(
+     *     min=100,
+     *     minMessage="La description doit faire {{ limit }} caractères minimum",
+     *     max=255,
+     *     maxMessage="La description doit faire {{ limit }} caractères maximum")
+     */
+    private $shortDescription;
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -61,7 +78,7 @@ class Category
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -124,6 +141,30 @@ class Category
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function isInMenu(): ?bool
+    {
+        return $this->isInMenu;
+    }
+
+    public function setIsInMenu(bool $isInMenu): self
+    {
+        $this->isInMenu = $isInMenu;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(?string $shortDescription): self
+    {
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }
