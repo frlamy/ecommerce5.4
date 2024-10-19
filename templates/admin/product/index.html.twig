@@ -22,6 +22,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Catégorie(s)</th>
+                <th scope="col">Statut</th>
                 <th scope="col">Action</th>
             </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <th scope="row">{{ product.id }}</th>
                     <td>{{ product.name }}</td>
                     <td>{% for category in product.categories %}<a href="{{ path('admin.category.edit', {'id' : category.id, 'slug' : category.slug}) }}">{{ category.name }}</a>{% if not loop.last %}&nbsp;|&nbsp;{% endif %}{% endfor %}</td>
+                    <td>{% if product.publishedAt is not null %}<i class="fa fa-check text-success"></i>{{ product.publishedAt|date('d/m/Y H:i') }}{% endif %}</td>
                     <td><a href="{{ path('admin.product.edit', {'id': product.id, 'slug': product.slug}) }}" type="button" class="btn btn-info btn-sm rounded-3"><i class="fa-solid fa-arrow-right"></i>&nbsp;Mettre à jour</a></td>
                 </tr>
             {% endfor %}
