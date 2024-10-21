@@ -3,13 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Product;
-use App\Form\ProductType;
+use App\Form\Admin\ProductType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("admin/product")

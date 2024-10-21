@@ -34,11 +34,15 @@
 
                 {# Formulaire recherche produit #}
                 <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control me-sm-2 btn-sm" type="search" placeholder="Search">
                 </form>
                 {# Fin recherche produit #}
 
+                {% if app.user %}
+                    <a href="{{ path('app.logout') }}" class="btn btn-outline-danger btn-sm my-2 my-sm-0">Se déconnecter</a>
+                {% else %}
+                    <a href="{{ path('app.login') }}" class="btn btn-secondary btn-sm my-2 my-sm-0">Se connecter</a>
+                {% endif %}
             </div>
         </div>
     </nav>

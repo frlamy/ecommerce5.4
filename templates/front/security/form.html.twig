@@ -1,0 +1,39 @@
+{% extends '@template/base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block main %}
+    <div class="row justify-content-around">
+        <!-- Formulaire de Connexion -->
+        <div class="p-4 col-md-6 mb-3">
+            {{ form_start(loginForm) }}
+            <h2 class="text-center mb-4">Connexion</h2>
+                <div class="mb-3">
+                    {{ form_row(loginForm.email) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(loginForm.password) }}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                </div>
+            {{ form_end(loginForm) }}
+        </div>
+
+        <!-- Formulaire d'Enregistrement -->
+        <div class="p-4 col-md-6 border-start">
+            <h2 class="text-center mb-4">S'enregistrer</h2>
+            {{ form_start(registrationForm) }}
+                <div class="mb-3">
+                    {{ form_row(registrationForm.email) }} <!-- Champ email pour l'inscription -->
+                </div>
+                <div class="mb-3">
+                    {{ form_row(registrationForm.password) }} <!-- Champ mot de passe pour l'inscription -->
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-block">S'enregistrer</button>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}
